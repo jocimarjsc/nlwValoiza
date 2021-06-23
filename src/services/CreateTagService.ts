@@ -11,7 +11,7 @@ class CreateTagsService {
                 name: "tagNameError",
                 message: "Incorrect name!",
                 description: "Name Field cannot be empty",
-                statusCode: 460
+                statusCode: 400
             }
             throw new ErrorHandler(err);
         }
@@ -23,7 +23,7 @@ class CreateTagsService {
                 name: "tagNameError",
                 message: "Tag already registered!",
                 description: "Tag is already registered. Please inform another tag",
-                statusCode: 461
+                statusCode: 409
             }
             throw new ErrorHandler(err);
         }

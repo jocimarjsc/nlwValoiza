@@ -17,7 +17,7 @@ class CreateUserService {
                 name: "userNameError",
                 message: "Incorrect name!",
                 description: "Name Field cannot be empty",
-                statusCode: 460
+                statusCode: 400
             }
             throw new ErrorHandler(err);
         };
@@ -27,7 +27,7 @@ class CreateUserService {
                 name: "userNameError",
                 message: "Incorrect email!",
                 description: "E-mail Field cannot be empty",
-                statusCode: 460
+                statusCode: 400
             }
             throw new ErrorHandler(err);
         };
@@ -41,7 +41,7 @@ class CreateUserService {
                 name: "userNameError",
                 message: "User already registered!",
                 description: "User is already registered. Please inform another user",
-                statusCode: 461
+                statusCode: 409
             }
             throw new ErrorHandler(err);
         }
