@@ -1,15 +1,18 @@
 import { getCustomRepository } from "typeorm";
+import { hash } from "bcryptjs";
+
 import { ErrorHandler } from "../err/errorhandlers";
 import { UsersRepositories } from "../repositories/UsersRepositories"
 
 interface IUserRequest {
     name: string;
+    password: string;
     email: string;
     admin?: boolean;
 }
 
 class CreateUserService {
-    async execute({ name, email, admin}: IUserRequest) {
+    async execute({ name, password, email, admin}: IUserRequest) {
         const usersRepository = getCustomRepository(UsersRepositories);
         
         if(!name) {
@@ -46,12 +49,18 @@ class CreateUserService {
             throw new ErrorHandler(err);
         }
 
+        const passwordHash = await hash(password, 8);
         const user = usersRepository.create({
-            name, email, admin
+            name, 
+            password: passwordHash, 
+            email, 
+            admin
         });
 
         await usersRepository.save(user);
 
+        delete user.password;
+        
         return user;
     }
 }

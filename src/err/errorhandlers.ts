@@ -12,7 +12,7 @@ class ErrorHandler extends Error {
 
   constructor({ message, name, description, statusCode }: IErrorHandler) {
    super(message)
-   this.name = name,
+   this.name = name
    this.description = description
    this.statusCode = statusCode
   }
