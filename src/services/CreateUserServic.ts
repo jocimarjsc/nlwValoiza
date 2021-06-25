@@ -3,6 +3,7 @@ import { hash } from "bcryptjs";
 
 import { ErrorHandler } from "../err/errorhandlers";
 import { UsersRepositories } from "../repositories/UsersRepositories"
+import { classToPlain } from "class-transformer";
 
 interface IUserRequest {
     name: string;
@@ -58,10 +59,8 @@ class CreateUserService {
         });
 
         await usersRepository.save(user);
-
-        delete user.password;
         
-        return user;
+        return classToPlain(user);
     }
 }
 
