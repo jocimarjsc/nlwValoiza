@@ -22,7 +22,7 @@ export function ensureAuthenticated( request: Request, response: Response, next:
     const [, token] = authToken.split(" ");
 
     try {
-        const { sub } = verify(token, "af12149c4d04fb5a748ab576758a5bc1") as IPayload;
+        const { sub } = verify(token, process.env.SECRET) as IPayload;
 
         request.user_id = sub;
         

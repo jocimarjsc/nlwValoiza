@@ -1,6 +1,9 @@
 import express from "express";
 import "express-async-errors";
 import cors from "cors";
+import * as dotenv from "dotenv";
+
+dotenv.config()
 
 import { routes } from "./router";
 import { CaptureError } from "./err/CaptureError";

@@ -3,4 +3,4 @@ import "./database";
 
 import { app } from "./app";
 
-app.listen(3333, () => console.log("[SV] -> Server is running!"))
+app.listen(process.env.PORT, () => console.log("[SV] -> Server is running!"))
